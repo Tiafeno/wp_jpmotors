@@ -1,0 +1,282 @@
+/*
+Theme Name:   JP Motors
+Theme URI:    http://jp-motors.com
+Author:       Falicrea Inc.
+Author URI:   https://falicrea.com/
+Description:  Designed and developed by Falicrea
+Version:      1.0.6
+License:      GNU General Public License v2 or later
+License URI:  https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:  jpmotors
+*/
+body,
+html {
+  font-family: 'Montserrat', sans-serif;
+}
+
+header .uk-section-primary {
+  background-color: #ffffff;
+}
+
+.uk-navbar-nav > li > a,
+.uk-navbar-item,
+.uk-navbar-toggle {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.jp-navbar nav.uk-navbar-container {
+  background: transparent;
+}
+
+.jp-navbar-top {
+  background-color: #1C1E32;
+}
+
+.jp-navbar-top ul.uk-navbar-nav li a {
+  height: 48px;
+  text-transform: capitalize;
+  font-size: 10px;
+  letter-spacing: .5px;
+  font-weight: 600;
+}
+
+.jp-navbar-top ul.uk-navbar-nav li:nth-child(n+2) a {
+  width: 205px;
+}
+
+.jp-navbar-primary {
+  background-color: #0096B1;
+}
+
+.jp-navbar-primary ul.uk-navbar-nav li > a {
+  height: 60px;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.jp-bg-white {
+  background-color: white;
+}
+
+.uk-navbar-dropdown {
+  background: #0096B1;
+}
+
+.uk-navbar-dropdown-nav li > a {
+  height: inherit !important;
+}
+
+.jp-navbar-primary .uk-navbar-dropdown {
+  padding: 0;
+}
+
+.jp-navbar-primary .uk-navbar-dropdown li a {
+  padding-left: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.jp-navbar-primary .uk-navbar-nav li:hover,
+.jp-navbar-primary .uk-navbar-dropdown li:hover,
+.jp-navbar-primary .uk-navbar-dropdown li.uk-active a {
+  background-color: #00A9CE;
+  color: white;
+}
+
+.jp-navbar-primary .uk-navbar-nav > li.uk-active > a,
+.jp-navbar-top .uk-navbar-nav > li.uk-active > a {
+  color: #fff;
+}
+
+.jp-navbar-top .uk-navbar-nav > li > a,
+.jp-navbar-primary .uk-navbar-nav > li > a {
+  color: rgba(251, 251, 251, 0.64);
+}
+
+/** Card */
+
+.ui.cards>.card,
+.ui.card {
+  width: 288px;
+}
+
+.ui.cards>.card>.content>.description,
+.ui.card>.content>.description {
+  font-size: 13px;
+}
+
+
+/* Search */
+
+.uk-input, .uk-select:not([multiple]):not([size]) {
+  font-size: 12px;
+}
+.jp-search {
+  background-color: #0096B1;
+}
+form[name="jpsearch"] button {
+  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+
+/* .end search */
+
+/* Footer */
+.jp-sitemap {
+  background: #22292D;
+}
+.jp-brands {
+  background-color: #B3B3B3;
+}
+.jp-sitemap .jp-aside-footer h4 {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.jp-aside-footer .uk-list > li:nth-child(n+2) {
+  margin-top: 0px;
+}
+.jp-aside-footer .aside-content li a {
+  text-decoration: none;
+  font-size: .75rem;
+}
+.jp-aside-footer .aside-content li a:hover {
+  color: #0096B1;
+}
+/* .end footer */
+
+/* Pagination */
+a {
+  text-decoration: none;
+}
+
+.pagination-wrapper {
+  text-align: center;
+  margin: 40px 0;
+  width: 100%;
+}
+
+.pagination {
+  display: inline-block;
+  height: inherit;
+  padding: 0 25px;
+  border-radius: 35px;
+  background-color: #eee;
+}
+@media only screen and (max-width: 1199px) {
+  .pagination {
+    height: inherit;
+    padding: 0 10px;
+    border-radius: 25px;
+  }
+}
+
+.page-numbers {
+  display: block;
+  padding: 0 17px;
+  float: left;
+  transition: 400ms ease;
+  color: #595959;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  line-height: 40px;
+  font-weight: 600;
+}
+.page-numbers:hover, .page-numbers.current {
+  background-color: #0096b1;
+  color: #fff;
+  text-decoration: none;
+}
+.page-numbers.prev:hover, .page-numbers.next:hover {
+  background-color: transparent;
+  color: #0096b1;
+}
+@media only screen and (max-width: 1199px) {
+  .page-numbers {
+    padding: 0 15px;
+    font-size: 13px;
+    line-height: 40px;
+  }
+}
+@media only screen and (min-width: 120px) and (max-width: 1024px) {
+  .page-numbers {
+    padding: 0 14px;
+    display: none;
+  }
+  .page-numbers:nth-of-type(2) {
+    position: relative;
+    padding-right: 50px;
+  }
+  .page-numbers:nth-of-type(2)::after {
+    content: '...';
+    position: absolute;
+    font-size: 25px;
+    top: 0;
+    left: 45px;
+  }
+  .page-numbers:nth-child(-n+3), .page-numbers:nth-last-child(-n+3) {
+    display: block;
+  }
+  .page-numbers:nth-last-child(-n+4) {
+    padding-right: 14px;
+  }
+  .page-numbers:nth-last-child(-n+4)::after {
+    content: none;
+  }
+}
+
+/* Single product */
+.catalog-feature ul li {
+  color: #606060;
+  display: inline-block;
+  float: left;
+  font-weight: 300;
+  height: 35px;
+  max-height: 35px;
+  margin-bottom: 15px;
+  width: 50%;
+  text-decoration: none;
+}
+
+.catalog-feature li img {
+  width: 35px;
+}
+
+.catalog-feature li span {
+  padding-left: 5px;
+}
+
+.uk-description-list h4 {
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+.uk-description-list h4::after {
+  content: ' ';
+  display: block;
+  width: 100%;
+  height: 1.8px;
+  background: #B3B3B3;
+  margin-top: 5px;
+}
+
+.uk-description-list p {
+  font-size: 13px;
+}
+
+h1.catalog-title {
+  font-weight: bold;
+  font-size: 1.28571429em;
+  text-transform: uppercase;
+}
+
+h4.catalog-sub-title {
+  color: #808080;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+.catalog-button button {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 14px !important;
+}

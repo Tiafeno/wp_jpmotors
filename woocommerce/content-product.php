@@ -19,6 +19,7 @@ global $product;
 if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
 }
+$jp_vehicles = jServices::get_product_taxonomy_value($product->get_id(), 'jp_vehicles');
 
 ?>
 
@@ -29,7 +30,9 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	<div class="content">
 		<div class="header"><?= $product->get_title() ?></div>
 		<div class="meta">
-			<a>Friends</a>
+			<?php if ( ! empty($jp_vehicles)) { ?>
+				<a href="<?= get_term_link(reset($jp_vehicles)->term_id) ?>"><?= reset($jp_vehicles)->name ?></a>
+			<?php } ?>
 		</div>
 		<div class="description">
 			<?= $product->get_description() ?>
@@ -43,4 +46,3 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 		</div>
 	</div>
 </div>
-

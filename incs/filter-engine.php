@@ -23,6 +23,23 @@ function jp_filter_engine( &$Engine ) {
 		return get_the_permalink( (int) $id );
 	} ) );
 
+	$Engine->addFilter( new Twig_SimpleFilter('get_product_taxonomy_value', function ($id, $taxonomy, $callback) {
+		$terms = jServices::get_product_taxonomy_value((int)$id, $taxonomy);
+		if (empty($terms)) return "Véhicule"; // Default value
+		switch (trim($callback)) {
+			case 'link':
+				return get_term_link(reset($terms)->term_id);
+				break;
+			case 'name':
+				return reset($terms)->name;
+				break;
+
+			default:
+				return 'Callback not missing!';
+				break;
+		}
+	}));
+
 	$Engine->addFilter( new Twig_SimpleFilter( 'woocommerce_get_product_thumbnail', function ($id) {
 		return get_the_post_thumbnail( (int)$id, 'shop_catalog' );
 	} ) );

@@ -170,6 +170,7 @@ if ( ! class_exists( 'JMotors' ) ):
 			});
 		}
 
+		// Récuperer le lien image du logo
 		public static function get_logo_uri() {
 			$custom_logo_id = get_theme_mod( 'custom_logo' );
 			$image = wp_get_attachment_image_src( $custom_logo_id , 'full' );

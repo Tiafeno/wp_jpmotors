@@ -9,7 +9,9 @@
         <div class="content">
           <div class="header">{{catalog.post_title}}</div>
           <div class="meta">
-            <a>Friends</a>
+            <a href="{{catalog.ID|get_product_taxonomy_value('jp_vehicles', 'link')}}">
+              {{catalog.ID|get_product_taxonomy_value('jp_vehicles', 'name')}}
+            </a>
           </div>
           <div class="description">
             {{catalog.ID|get_description|raw}}

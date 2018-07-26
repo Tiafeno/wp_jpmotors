@@ -15,6 +15,7 @@
 
 define( '__SITENAME__', 'JPMotors' );
 define( '__google_api__', base64_decode( 'QUl6YVN5Qng3LVJKbGlwbWU0YzMtTGFWUk5oRnhiV19xWG5DUXhj' ) );
+define( 'TWIG_TEMPLATE_PATH', get_template_directory() . '/templates' );
 $theme = wp_get_theme( 'wp_jpmotors' );
 
 $jMotors = (object) [
@@ -23,10 +24,33 @@ $jMotors = (object) [
 	'services' => require 'incs/class/class-jservices.php'
 ];
 
+$vcInstance = (object) [
+	'vcCatalogBox' => require 'incs/class-vc/vcCatalogBox.php',
+];
+
 require 'incs/class/class-menu-walker.php';
+require 'incs/filter-engine.php';
 
 // Autoload composer libraries
 require 'composer/vendor/autoload.php';
+
+try {
+	$loader = new Twig_Loader_Filesystem();
+	$loader->addPath( TWIG_TEMPLATE_PATH . '/vc', 'VC' );
+
+	/** @var Object $twig */
+	$Engine = new Twig_Environment( $loader, array(
+		'debug'       => WP_DEBUG,
+		'cache'       => TWIG_TEMPLATE_PATH . '/cache',
+		'auto_reload' => WP_DEBUG
+	) );
+
+	// Ajouter des filtres
+	jp_filter_engine( $Engine );
+
+} catch ( Twig_Error_Loader $e ) {
+	die( $e->getRawMessage() );
+}
 
 add_action( 'after_setup_theme', function () {
 	load_theme_textdomain( 'twentyfifteen' );
@@ -37,8 +61,8 @@ add_action( 'after_setup_theme', function () {
 	add_theme_support( 'automatic-feed-links' );
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'custom-logo', array(
-		'height'      => 100,
-		'width'       => 250,
+		'height'     => 100,
+		'width'      => 250,
 		'flex-width' => true,
 	) );
 
@@ -60,3 +84,22 @@ add_action( 'after_setup_theme', function () {
 
 
 } );
+
+if( function_exists('acf_add_options_page') ) {
+
+	// add parent
+	$parent = acf_add_options_page(array(
+		'page_title' 	=> 'General Settings',
+		'menu_title' 	=> 'JP Motors Settings',
+		'capability' => 'edit_posts',
+		'redirect' 		=> false
+	));
+
+	// add sub page
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Slider Settings',
+		'menu_title' 	=> 'Slider',
+		'parent_slug' 	=> $parent['menu_slug'],
+	));
+
+}

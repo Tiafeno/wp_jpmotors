@@ -17,23 +17,27 @@ get_header();
 ?>
 
 	<!-- slider -->
+<?php
+if ( function_exists( 'get_field' ) ) {
+	$slider                   = new stdClass();
+	$slider->animation        = get_field( 'animations', 'option' );
+	$slider->autoplay         = get_field( 'autoplay', 'option' );
+	$slider->autoplayInterval = get_field( 'autoplay-interval', 'option' );
+	$slider->ratio            = get_field( 'ratio', 'option' );
+	$slider->galeries         = get_field( 'galeries', 'option' );
+	?>
 	<div class="jp-slider">
 		<div class="uk-position-relative uk-visible-toggle uk-light"
-		     uk-slideshow="ratio: 7:3; animation: push; autoplay-interval: 2500; autoplay: true">
+		     uk-slideshow="ratio: <?= $slider->ratio ?>; animation: <?= $slider->animation ?>; autoplay-interval: <?= $slider->autoplayInterval ?>; autoplay: <?= ( $slider->autoplay ) ? 'true' : 'false' ?>">
 
 			<ul class="uk-slideshow-items">
-				<li>
-					<img data-src="https://getuikit.com/docs/images/dark.jpg" width="1800" height="1200" alt="" uk-cover
-					     uk-img="target: !.uk-slideshow-items">
-				</li>
-				<li>
-					<img data-src="https://getuikit.com/docs/images/photo.jpg" width="1800" height="1200" alt="" uk-cover
-					     uk-img="target: !.uk-slideshow-items">
-				</li>
-				<li>
-					<img data-src="https://getuikit.com/docs/images/light.jpg" width="1800" height="1200" alt="" uk-cover
-					     uk-img="target: !.uk-slideshow-items">
-				</li>
+				<?php foreach ( $slider->galeries as $galerie ) : ?>
+					<li>
+						<img data-src="<?= $galerie['url'] ?>" width="<?= $galerie['width'] ?>" height="<?= $galerie['height'] ?>"
+						     alt="" uk-cover
+						     uk-img="target: !.uk-slideshow-items">
+					</li>
+				<?php endforeach; ?>
 			</ul>
 
 			<a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous
@@ -43,6 +47,9 @@ get_header();
 
 		</div>
 	</div>
+	<?php
+}
+?>
 	<!-- .end slider -->
 
 	<!-- search -->
@@ -63,7 +70,7 @@ get_header();
 											<option value="">Tous les marques</option>
 											<?php
 											foreach ( jServices::getTaxonomyContents( 'jp_mark' ) as $mark ) {
-												printf( "<option value='%s'>%s</option>", $mark->slug, ucfirst($mark->name) );
+												printf( "<option value='%s'>%s</option>", $mark->slug, ucfirst( $mark->name ) );
 											}
 											?>
 										</select>

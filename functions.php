@@ -79,7 +79,9 @@ add_action( 'after_setup_theme', function () {
 	// Register menu location
 	register_nav_menus( array(
 		'primary'  => __( 'Primary Menu', 'twentyfifteen' ),
-		'menu-top' => __( 'Top Menu', __SITENAME__ )
+		'menu-top' => __( 'Top Menu', __SITENAME__ ),
+		'left-footer' => 'Footer Left Menu',
+		'middle-footer' => 'Footer Middle Menu',
 	) );
 
 

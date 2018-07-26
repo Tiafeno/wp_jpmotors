@@ -81,12 +81,14 @@
 						<div class="jp-navbar jp-navbar-primary">
 							<nav class="uk-navbar-container" uk-navbar>
 								<?php
-								wp_nav_menu( [
-									'menu_class' => "uk-navbar-nav",
-									'theme_location' => 'primary',
-									'container_class' => 'uk-navbar-left',
-									'walker' => new Primary_Walker
-								] );
+								if (has_nav_menu('primary')) {
+									wp_nav_menu( [
+										'menu_class' => "uk-navbar-nav",
+										'theme_location' => 'primary',
+										'container_class' => 'uk-navbar-left',
+										'walker' => new Primary_Walker
+									] );
+								}
 								?>
 							</nav>
 						</div>

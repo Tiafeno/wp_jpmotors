@@ -103,6 +103,31 @@ if ( ! class_exists( 'JMotors' ) ):
 					'rewrite' => array('slug' => 'condition'),
 				]);
 
+				// Now register the taxonomy (Vehicules)
+				register_taxonomy('jp_vehicles', array('product'), [
+					'hierarchical' => true,
+					'labels' => [
+						'name' => _x('Véhicules', 'taxonomy general name'),
+						'singular_name' => _x('Véhicule', 'taxonomy singular name'),
+						'search_items' => 'Trouver un véhicule',
+						'all_items' => 'Trouver des véhicules',
+						'parent_item' => 'Vahicule parent',
+						'parent_item_colon' => 'Véhicule parent:',
+						'edit_item' => 'Modifier le véhicule',
+						'update_item' => 'Mettre à jour le véhicule',
+						'add_new_item' => 'Ajouter un nouveau véhicule',
+						'menu_name' => 'Véhicules',
+					],
+					'show_ui' => true,
+					'show_admin_column' => true,
+					'query_var' => true,
+					'rewrite' => array('slug' => 'vehicles'),
+				]);
+
+			});
+
+			add_action('widgets_init', function() {
+				// Register sidebar here
 			});
 		}
 

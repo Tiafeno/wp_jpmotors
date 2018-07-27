@@ -38,7 +38,7 @@ try {
 	$loader = new Twig_Loader_Filesystem();
 	$loader->addPath( TWIG_TEMPLATE_PATH . '/vc', 'VC' );
 
-	/** @var Object $twig */
+	/** @var Object $Engine */
 	$Engine = new Twig_Environment( $loader, array(
 		'debug'       => WP_DEBUG,
 		'cache'       => TWIG_TEMPLATE_PATH . '/cache',

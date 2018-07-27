@@ -78,11 +78,11 @@ if ( post_password_required() ) {
 							</li>
 							<li>
 								<img src="<?= get_template_directory_uri() ?>/img/icons/icon-2.png">
-								<span class="uk-text-middle"><?= $product_acf_field->gearbox ?></span>
+								<span class="uk-text-middle"><?= $product_acf_field->gearbox['label'] ?></span>
 							</li>
 							<li>
 								<img src="<?= get_template_directory_uri() ?>/img/icons/icon-3.png">
-								<span class="uk-text-middle"><?= $product_acf_field->fuel ?></span>
+								<span class="uk-text-middle"><?= $product_acf_field->fuel['label'] ?></span>
 							</li>
 							<li>
 								<img src="<?= get_template_directory_uri() ?>/img/icons/icon-4.png">

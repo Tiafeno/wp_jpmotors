@@ -10,7 +10,7 @@
           <div class="header">{{catalog.post_title}}</div>
           <div class="meta">
             <a href="{{catalog.ID|get_product_taxonomy_value('jp_vehicles', 'link')}}">
-              {{catalog.ID|get_product_taxonomy_value('jp_vehicles', 'name')}}
+              {{catalog.ID|get_product_taxonomy_value('jp_vehicles', 'name')|raw}}
             </a>
           </div>
           <div class="description">

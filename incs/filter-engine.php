@@ -35,7 +35,7 @@ function jp_filter_engine( &$Engine ) {
 				break;
 
 			default:
-				return 'Callback not missing!';
+				return 'Callback missing!';
 				break;
 		}
 	}));

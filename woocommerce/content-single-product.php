@@ -22,22 +22,24 @@
  */
 
 defined( 'ABSPATH' ) || exit;
-global $product;
+global $product, $jMotors;
 
 /**
  * Hook: woocommerce_before_single_product.
- *
  * @hooked wc_print_notices - 10
  */
 do_action( 'woocommerce_before_single_product' );
 
 if ( function_exists( 'get_field' ) ):
-
+	$product_acf_field = $jMotors->services->get_product_acf($product->get_id());
 endif;
+
+// Get vehicle taxonomy
+$vehicle = jServices::get_product_taxonomy_value($product->get_id(), 'jp_vehicles');
+$vehicle = empty($vehicle) && ! is_array($vehicle) ? null : reset($vehicle);
 
 if ( post_password_required() ) {
 	echo get_the_password_form(); // WPCS: XSS ok.
-
 	return;
 }
 ?>
@@ -70,19 +72,21 @@ if ( post_password_required() ) {
 						<ul>
 							<li>
 								<img src="<?= get_template_directory_uri() ?>/img/icons/icon-1.png">
-								<span class="uk-text-middle">Citadine</span>
+								<span class="uk-text-middle">
+									<?php if ( ! is_null($vehicle)): echo $vehicle->name; endif; ?>
+								</span>
 							</li>
 							<li>
 								<img src="<?= get_template_directory_uri() ?>/img/icons/icon-2.png">
-								<span class="uk-text-middle">Automatique</span>
+								<span class="uk-text-middle"><?= $product_acf_field->gearbox ?></span>
 							</li>
 							<li>
 								<img src="<?= get_template_directory_uri() ?>/img/icons/icon-3.png">
-								<span class="uk-text-middle">Carburant</span>
+								<span class="uk-text-middle"><?= $product_acf_field->fuel ?></span>
 							</li>
 							<li>
 								<img src="<?= get_template_directory_uri() ?>/img/icons/icon-4.png">
-								<span class="uk-text-middle">Vitesse 250km/h</span>
+								<span class="uk-text-middle">Vitesse <?= $product_acf_field->speed ?>km/h</span>
 							</li>
 						</ul>
 					</div>

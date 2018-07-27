@@ -32,7 +32,7 @@ if ( ! class_exists('jServices')):
 				$fuel = get_field('fuel', $post_id);
 				$speed_max = get_field('speed_max', $post_id);
 
-				return [
+				return (object)[
 					'gearbox' => $gearbox,
 					'fuel' => $fuel,
 					'speed' => $speed_max

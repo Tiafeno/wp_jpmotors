@@ -29,6 +29,7 @@ $vcInstance = (object) [
 ];
 
 require 'incs/class/class-menu-walker.php';
+require 'api/wp-api.php';
 require 'incs/filter-engine.php';
 
 // Autoload composer libraries

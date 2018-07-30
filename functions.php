@@ -23,6 +23,7 @@ $jMotors = (object) [
 	'root'     => require 'incs/class/class-jmotors.php',
 	'services' => require 'incs/class/class-jservices.php'
 ];
+$options = $jMotors->services->get_options();
 
 $vcInstance = (object) [
 	'vcCatalogBox' => require 'incs/class-vc/vcCatalogBox.php',

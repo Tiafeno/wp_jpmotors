@@ -23,6 +23,20 @@ if ( ! class_exists('jServices')):
 
 		}
 
+		/*
+		*	Recuperer les champs options sur le site
+		*	@return false|object
+		*/
+		public function get_options() {
+			if ( ! function_exists('get_field')) return false;
+			$options = Array();
+			$options_names = ['phone', 'address', 'email', 'brands'];
+			foreach ($options_names as $name) {
+				$options[$name] = get_field($name, 'option');
+			}
+			return (object)$options;
+		}
+
 		// Récuperer les post meta pour les champs ACF
 		public function get_product_acf( $post_id )
 		{

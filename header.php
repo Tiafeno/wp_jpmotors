@@ -1,3 +1,6 @@
+<?php
+global $options;
+?>
 <!DOCTYPE html>
 <!--
   ~ Copyright (c) 2018 Tiafeno Finel
@@ -68,11 +71,11 @@
 										<li class="uk-active">
 											<a href="#">
 												<i class="icon large phone"></i>
-												020 20 00 000
+												<?= $options->phone ?>
 											</a>
 										</li>
 										<li>
-											<a href="#">Lot n 5 Filatex Androndrakely 101 Antananarivo</a>
+											<a href="#"><?= $options->address ?></a>
 										</li>
 									</ul>
 								</div>

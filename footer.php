@@ -16,7 +16,7 @@
 						<?php foreach ($brands as $brand): ?>
 						<li>
 							<div class="uk-panel">
-								<img src="<?= $brand['sizes']['shop_catalog'] ?>" alt="">
+								<img src="<?= $brand['sizes']['medium_large'] ?>" alt="">
 							</div>
 						</li>
 						<?php endforeach; ?>

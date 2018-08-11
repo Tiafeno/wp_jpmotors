@@ -1,1 +1,5 @@
 /composer/vendor
+/templates/cache/*
+
+.idea
+.vscode

@@ -19,7 +19,7 @@
 					?>
 						<li>
 							<div class="uk-panel">
-								<a href="<?= $link ? $link : '#no_link' ?>">
+								<a target="_blank" href="<?= $link ? $link : '#no_link' ?>">
 									<img src="<?= $brand['sizes']['medium_large'] ?>" alt="">
 								</a>
 							</div>

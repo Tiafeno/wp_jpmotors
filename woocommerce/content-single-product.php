@@ -116,13 +116,13 @@ if ( post_password_required() ) {
 
 		<div class="catalog-button uk-margin-medium-top">
 			<div>
-				<button class="ui negative basic button uk-width-1-1">Découvrir le véhicule</button>
+				<a href="<?= $product_acf_field->discover ?>" class="ui negative basic button uk-width-1-1">Découvrir le véhicule</a>
 			</div>
 			<div class="uk-margin-small-top">
-				<button class="ui primary basic button uk-width-1-1">
+				<a href="<?= $product_acf_field->pdf ?>" class="ui primary basic button uk-width-1-1">
 					<i class="icon download"></i>
 					Télécharger le pdf
-				</button>
+				</a>
 			</div>
 		</div>
 	</div>

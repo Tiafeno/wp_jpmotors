@@ -18,10 +18,7 @@ if ( ! defined('ABSPATH')) {
 
 if ( ! class_exists('jServices')):
 	class jServices {
-		public function __construct ()
-		{
-
-		}
+		public function __construct () {}
 
 		/*
 		*	Recuperer les champs options sur le site
@@ -41,15 +38,28 @@ if ( ! class_exists('jServices')):
 		public function get_product_acf( $post_id )
 		{
 			if (function_exists('get_field')) {
+				$post_id = intval($post_id);
 				// récuperer les caractéristiques
 				$gearbox = get_field('gearbox', $post_id);
 				$fuel = get_field('fuel', $post_id);
 				$speed_max = get_field('speed_max', $post_id);
+				
+                $discover_vehicle = get_field('discover_vehicle', $post_id); // Return url
+                if (empty($discover_vehicle) || is_null($discover_vehicle)) {
+                    $discover_vehicle = '#empty';
+                }
+
+                $pdf_file_link = '#empty';
+                $pdf_file_id = get_field('pdf_file', $post_id); // return ID (number)
+                if ($pdf_file_id)
+                    $pdf_file_link = get_attachment_link((int) $pdf_file_id);
 
 				return (object)[
 					'gearbox' => $gearbox,
 					'fuel' => $fuel,
-					'speed' => $speed_max
+					'speed' => $speed_max,
+					'pdf' => $pdf_file_link,
+					'discover' => $discover_vehicle
 				];
 			} else {
 				return null;

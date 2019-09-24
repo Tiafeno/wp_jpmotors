@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) 2018 Tiafeno Finel
  *
@@ -21,32 +22,35 @@
  * SOFTWARE.
  */
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 global $product, $jMotors;
 
 /**
  * Hook: woocommerce_before_single_product.
  * @hooked wc_print_notices - 10
  */
-do_action( 'woocommerce_before_single_product' );
+do_action('woocommerce_before_single_product');
 
-if ( function_exists( 'get_field' ) ):
+if (function_exists('get_field')) :
 	$product_acf_field = $jMotors->services->get_product_acf($product->get_id());
 endif;
 
 // Get vehicle taxonomy
 $vehicle = jServices::get_product_taxonomy_value($product->get_id(), 'jp_vehicles');
-$vehicle = empty($vehicle) && ! is_array($vehicle) ? null : reset($vehicle);
+$vehicle = empty($vehicle) && !is_array($vehicle) ? null : reset($vehicle);
 
-if ( post_password_required() ) {
+if (post_password_required()) {
 	echo get_the_password_form(); // WPCS: XSS ok.
 	return;
 }
+
+$with_price = !empty($product->get_price()) && !is_null($product->get_price()) ? true : false;
 ?>
 
 <style type="text/css">
 	/*	Override woocommerce style */
 	@media only screen and (min-width: 768px) {
+
 		.woocommerce #content div.product div.images,
 		.woocommerce div.product div.images,
 		.woocommerce-page #content div.product div.images,
@@ -54,7 +58,6 @@ if ( post_password_required() ) {
 			width: 100%;
 		}
 	}
-
 </style>
 
 <!-- single product page -->
@@ -73,7 +76,8 @@ if ( post_password_required() ) {
 							<li>
 								<img src="<?= get_template_directory_uri() ?>/img/icons/icon-1.png">
 								<span class="uk-text-middle">
-									<?php if ( ! is_null($vehicle)): echo $vehicle->name; endif; ?>
+									<?php if (!is_null($vehicle)) : echo $vehicle->name;
+									endif; ?>
 								</span>
 							</li>
 							<li>
@@ -104,15 +108,16 @@ if ( post_password_required() ) {
 	</div>
 	<div class="uk-width-1-3@s uk-width-1-1">
 		<h1 class="catalog-title uk-margin-small-bottom"><?= $product->get_title() ?></h1>
-		<h4 class="uk-margin-remove-top catalog-sub-title">lorem upsum dolor</h4>
-
+		<!-- <h4 class="uk-margin-remove-top catalog-sub-title">lorem upsum dolor</h4> -->
+		<?php if ($with_price): ?>
 		<div class="catalog-price uk-margin-medium-top">
 			<div class="ui labels">
-        <span class="ui red label price">
-          <?= $product->get_price() ?>
-        </span>
+				<span class="ui red label price">
+					<?= $product->get_price() ?>
+				</span>
 			</div>
 		</div>
+		<?php endif; ?>
 
 		<div class="catalog-button uk-margin-medium-top">
 			<div>
@@ -130,4 +135,4 @@ if ( post_password_required() ) {
 </div>
 
 
-<?php do_action( 'woocommerce_after_single_product' ); ?>
+<?php do_action('woocommerce_after_single_product'); ?>

@@ -1,4 +1,5 @@
 <?php
+
 /**
  *   Copyright (c) 2018, Falicrea
  *
@@ -17,45 +18,50 @@
  * Ajouter des filtres dans l'environement
  * @param object $Engine - Twig_Environment
  */
-function jp_filter_engine( &$Engine ) {
+function jp_filter_engine(&$Engine)
+{
 
-	$Engine->addFilter( new Twig_SimpleFilter( 'get_the_permalink', function ( $id ) {
-		return get_the_permalink( (int) $id );
-	} ) );
+    $Engine->addFilter(new Twig_SimpleFilter('has_price', function ($id) {
+        $product = wc_get_product((int) $id);
+        $price = $product->get_price();
+        return !empty($price);
+    }));
 
-	$Engine->addFilter( new Twig_SimpleFilter('get_product_taxonomy_value', function ($id, $taxonomy, $callback) {
-		$terms = jServices::get_product_taxonomy_value((int)$id, $taxonomy);
-		if (empty($terms)) return "Véhicule"; // Default value
-		switch (trim($callback)) {
-			case 'link':
-				return get_term_link(reset($terms)->term_id);
-				break;
-			case 'name':
-				return reset($terms)->name;
-				break;
+    $Engine->addFilter(new Twig_SimpleFilter('get_the_permalink', function ($id) {
+        return get_the_permalink((int) $id);
+    }));
 
-			default:
-				return 'Callback missing!';
-				break;
-		}
-	}));
+    $Engine->addFilter(new Twig_SimpleFilter('get_product_taxonomy_value', function ($id, $taxonomy, $callback) {
+        $terms = jServices::get_product_taxonomy_value((int) $id, $taxonomy);
+        if (empty($terms)) return "Véhicule"; // Default value
+        switch (trim($callback)) {
+            case 'link':
+                return get_term_link(reset($terms)->term_id);
+                break;
+            case 'name':
+                return reset($terms)->name;
+                break;
 
-	$Engine->addFilter( new Twig_SimpleFilter( 'woocommerce_get_product_thumbnail', function ($id) {
-		return get_the_post_thumbnail( (int)$id, 'shop_catalog' );
-	} ) );
+            default:
+                return 'Callback missing!';
+                break;
+        }
+    }));
 
-	$Engine->addFilter( new Twig_SimpleFilter( 'get_description', function ($id) {
-		$product = wc_get_product((int)$id);
-		$title = $product->get_description();
-		unset($product);
-		return $title;
-	} ) );
+    $Engine->addFilter(new Twig_SimpleFilter('woocommerce_get_product_thumbnail', function ($id) {
+        return get_the_post_thumbnail((int) $id, 'shop_catalog');
+    }));
 
-	$Engine->addFilter( new Twig_SimpleFilter( 'get_price', function ($id) {
-		$product = wc_get_product((int)$id);
-		$price = $product->get_price();
-		unset($product);
-		return $price;
-	} ) );
+    $Engine->addFilter(new Twig_SimpleFilter('get_description', function ($id) {
+        $product = wc_get_product((int) $id);
+        $title = $product->get_description();
+        unset($product);
+        return $title;
+    }));
 
+    $Engine->addFilter(new Twig_SimpleFilter('get_price', function ($id) {
+        $product = wc_get_product((int) $id);
+        $price = $product->get_price();
+        return $price;
+    }));
 }

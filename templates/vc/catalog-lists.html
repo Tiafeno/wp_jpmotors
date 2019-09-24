@@ -17,6 +17,8 @@
             {{catalog.ID|get_description|raw}}
           </div>
         </div>
+        
+        {% if catalog.ID|has_price %}
         <div class="extra content">
           <div class="ui labels">
               <span class="ui red label price">
@@ -24,6 +26,8 @@
               </span>
           </div>
         </div>
+        {% endif %}
+        
       </div>
     {% endfor %}
   </div>

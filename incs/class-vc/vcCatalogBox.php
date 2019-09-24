@@ -62,7 +62,7 @@ class vcCatalogBox extends WPBakeryShortCode {
 
 	public function loadCallbackScript() {
 		global $jMotors;
-		wp_enqueue_script( 'vc_catalog_js', get_template_directory_uri() . '/assets/vc/vc-catalog.js', [ 'jquery' ], $jMotors->version, true );
+		wp_enqueue_script( 'vc_catalog_js', get_template_directory_uri() . '/assets/js/vc/vc-catalog.js', [ 'jquery' ], $jMotors->version, true );
 	}
 
 	private function getContents( $limiteCols = 6 ) {
